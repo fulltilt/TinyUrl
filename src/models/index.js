@@ -1,25 +1,14 @@
-import Sequelize from "sequelize";
+import mongoose from "mongoose";
 
-const sequelize = new Sequelize(
-  process.env.DATABASE,
-  process.env.DATABASE_USER,
-  process.env.DATABASE_PASSWORD,
-  {
-    dialect: "postgres"
-  }
-);
+import User from "./user";
+import Message from "./message";
 
-const models = {
-  User: sequelize.import("./user"),
-  Message: sequelize.import("./message")
+const connectDb = () => {
+  return mongoose.connect(process.env.DATABASE_URL);
 };
 
-Object.keys(models).forEach(key => {
-  if ("associate" in models[key]) {
-    models[key].associate(models);
-  }
-});
+const models = { User, Message };
 
-export { sequelize };
+export { connectDb };
 
 export default models;

@@ -3,9 +3,11 @@
 In root directory, create a ".env" file and provide the following information in this format:
 
 PORT=[port number]
-DATABASE=[database name]
-DATABASE_USER=[database user]
-DATABASE_PASSWORD=[database password]
+DATABASE_URL=[database url]
+
+# POSTGRES
+
+mongod
 
 # CURL COMMANDS
 
@@ -32,6 +34,4 @@ curl -X DELETE http://localhost:3000/messages/3
 
 # SITES
 
-[Setting up Postgres](https://www.robinwieruch.de/postgres-sql-macos-setup/)
-[Node and Postgres setup](https://www.robinwieruch.de/postgres-express-setup-tutorial/)
-[Creating Database Users](https://www.cyberciti.biz/faq/howto-add-postgresql-user-account/)
+[Setting up MongoDB](https://www.robinwieruch.de/mongodb-macos-setup/)
