@@ -2,10 +2,10 @@
 
 In root directory, create a ".env" file and provide the following information in this format:
 
-PORT=[port number]
+PORT=[port number]  
 DATABASE_URL=[database url]
 
-# POSTGRES
+# MONGO
 
 mongod
 

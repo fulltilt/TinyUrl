@@ -21,7 +21,7 @@ app.use(async (req, res, next) => {
 
 app.use("/session", routes.session);
 app.use("/users", routes.user);
-app.use("/messages", routes.message);
+app.use("/urls", routes.url);
 
 // use to seed database
 const createUsersWithMessages = async () => {
@@ -33,18 +33,18 @@ const createUsersWithMessages = async () => {
     username: "ddavids"
   });
 
-  const message1 = new models.Message({
-    text: "Published the Road to learn React",
+  const message1 = new models.Url({
+    url: "Published the Road to learn React",
     user: user1.id
   });
 
-  const message2 = new models.Message({
-    text: "Happy to release ...",
+  const message2 = new models.Url({
+    url: "Happy to release ...",
     user: user2.id
   });
 
-  const message3 = new models.Message({
-    text: "Published a complete ...",
+  const message3 = new models.Url({
+    url: "Published a complete ...",
     user: user2.id
   });
 
@@ -60,10 +60,7 @@ const eraseDatabaseOnSync = true;
 
 connectDb().then(async () => {
   if (eraseDatabaseOnSync) {
-    await Promise.all([
-      models.User.deleteMany({}),
-      models.Message.deleteMany({})
-    ]);
+    await Promise.all([models.User.deleteMany({}), models.Url.deleteMany({})]);
 
     createUsersWithMessages();
   }

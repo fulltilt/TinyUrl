@@ -1,13 +1,13 @@
 import mongoose from "mongoose";
 
-const messageSchema = new mongoose.Schema({
-  text: {
+const urlSchema = new mongoose.Schema({
+  url: {
     type: String,
     required: true
   },
   user: { type: mongoose.Schema.Types.ObjectId, ref: "User" }
 });
 
-const Message = mongoose.model("Message", messageSchema);
+const Url = mongoose.model("Url", urlSchema);
 
-export default Message;
+export default Url;
