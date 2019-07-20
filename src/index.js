@@ -23,8 +23,19 @@ app.use("/session", routes.session);
 app.use("/users", routes.user);
 app.use("/urls", routes.url);
 
+app.get("/:hash", async (req, res) => {
+  const PREFIX = "http://tinyurl.com/";
+  const url = await req.context.models.Url.find(
+    { hash: PREFIX + req.params.hash },
+    function(err, data) {
+      if (err) res.send(err);
+    }
+  );
+  return res.send(url[0].url);
+});
+
 // use to seed database
-const createUsersWithMessages = async () => {
+const createUsersWithUrls = async () => {
   const user1 = new models.User({
     username: "rwieruch"
   });
@@ -33,24 +44,27 @@ const createUsersWithMessages = async () => {
     username: "ddavids"
   });
 
-  const message1 = new models.Url({
+  const url1 = new models.Url({
+    hash: "123",
     url: "Published the Road to learn React",
     user: user1.id
   });
 
-  const message2 = new models.Url({
+  const url2 = new models.Url({
+    hash: "1234",
     url: "Happy to release ...",
     user: user2.id
   });
 
-  const message3 = new models.Url({
+  const url3 = new models.Url({
+    hash: "1235",
     url: "Published a complete ...",
     user: user2.id
   });
 
-  await message1.save();
-  await message2.save();
-  await message3.save();
+  await url1.save();
+  await url2.save();
+  await url3.save();
 
   await user1.save();
   await user2.save();
@@ -62,7 +76,7 @@ connectDb().then(async () => {
   if (eraseDatabaseOnSync) {
     await Promise.all([models.User.deleteMany({}), models.Url.deleteMany({})]);
 
-    createUsersWithMessages();
+    createUsersWithUrls();
   }
 
   app.listen(process.env.PORT, () =>

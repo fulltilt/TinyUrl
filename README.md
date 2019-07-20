@@ -20,17 +20,20 @@ curl -X GET http://localhost:3000/users/1
 Get current session
 curl -X GET http://localhost:3000/session
 
-Get all messages
-curl -X GET http://localhost:3000/messages
+Get all urls
+curl -X GET http://localhost:3000/urls
 
-Get particular message
-curl -X GET http://localhost:3000/messages/2
+Get particular url
+curl -X GET -H "Content-Type:application/json" http://localhost:3000/urls/find -d '{"url":"Happy to release ..."}'
 
-Add a message (note: in index.js, we are setting a default user)
-curl -X POST -H "Content-Type:application/json" http://localhost:3000/messages -d '{"text":"Hi again, World"}'
+Get a url given a hash
+curl -X GET http://localhost:3000/[hash]
 
-Delete a message
-curl -X DELETE http://localhost:3000/messages/3
+Add a url (note: in index.js, we are setting a default user)
+curl -X POST -H "Content-Type:application/json" http://localhost:3000/urls -d '{"url":"https://www.reddit.com"}'
+
+Delete a url
+curl -X DELETE http://localhost:3000/urls/3
 
 # SITES
 
