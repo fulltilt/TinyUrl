@@ -7,7 +7,11 @@ DATABASE_URL=[database url]
 
 # MONGO
 
-mongod
+mongod (start Mongo in separate tab)
+mongo (get Mongo CLI)
+show dbs  
+use [database name] (and then insert something to create the db)  
+db.[database name].insert({"name":"tutorials point"})
 
 # CURL COMMANDS
 
@@ -17,23 +21,23 @@ curl -X GET http://localhost:3000/users
 Get particular user
 curl -X GET http://localhost:3000/users/1
 
+Get particular users photos
+curl -X GET http://localhost:3000/users/photos/[username]
+
+Get particular users followers
+curl -X GET http://localhost:3000/users/followers/[username]
+
+Get particular who a particular user is following
+curl -X GET http://localhost:3000/users/following/[username]
+
+Get users newsfeed
+curl -X GET http://localhost:3000/users/newsfeed/[username]
+
 Get current session
 curl -X GET http://localhost:3000/session
 
-Get all urls
-curl -X GET http://localhost:3000/urls
-
-Get particular url
-curl -X GET -H "Content-Type:application/json" http://localhost:3000/urls/find -d '{"url":"Happy to release ..."}'
-
-Get a url given a hash
-curl -X GET http://localhost:3000/[hash]
-
-Add a url (note: in index.js, we are setting a default user)
-curl -X POST -H "Content-Type:application/json" http://localhost:3000/urls -d '{"url":"https://www.reddit.com"}'
-
-Delete a url
-curl -X DELETE http://localhost:3000/urls/3
+Get all photos
+curl -X GET http://localhost:3000/photos
 
 # SITES
 

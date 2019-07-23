@@ -4,7 +4,10 @@ const userSchema = new mongoose.Schema({
   username: {
     type: String,
     unique: true
-  }
+  },
+  photos: [{ type: mongoose.Schema.Types.ObjectId, ref: "Photo" }],
+  followers: [{ type: mongoose.Schema.Types.ObjectId, ref: "User" }],
+  following: [{ type: mongoose.Schema.Types.ObjectId, ref: "User" }]
 });
 
 userSchema.statics.findByLogin = async function(login) {
@@ -20,7 +23,7 @@ userSchema.statics.findByLogin = async function(login) {
 };
 
 userSchema.pre("remove", function(next) {
-  this.model("Message").deleteMany({ user: this._id }, next);
+  this.model("Photo").deleteMany({ user: this._id }, next);
 });
 
 const User = mongoose.model("User", userSchema);

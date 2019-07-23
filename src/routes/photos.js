@@ -4,17 +4,17 @@ import { Router } from "express";
 const router = Router();
 
 router.get("/", async (req, res) => {
-  const urls = await req.context.models.Url.find();
-  return res.send(urls);
+  const photos = await req.context.models.Photo.find();
+  return res.send(photos);
 });
 
-router.get("/find", async (req, res) => {
-  const url = await req.context.models.Url.find({ url: req.body.url }, function(
-    err,
-    data
-  ) {
-    if (err) res.send(err);
-  });
+router.get("/user/:id", async (req, res) => {
+  const url = await req.context.models.Photo.find(
+    { url: req.params.id },
+    function(err, data) {
+      if (err) res.send(err);
+    }
+  );
   return res.send(url);
 });
 

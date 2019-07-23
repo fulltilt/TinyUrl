@@ -1,9 +1,9 @@
 import session from "./session";
 import user from "./user";
-import url from "./url";
+import photo from "./photos";
 
 export default {
   session,
   user,
-  url
+  photo
 };

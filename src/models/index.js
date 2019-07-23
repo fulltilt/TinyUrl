@@ -1,7 +1,7 @@
 import mongoose from "mongoose";
 
 import User from "./user";
-import Url from "./url";
+import Photo from "./photo";
 
 const connectDb = () => {
   return mongoose.connect(process.env.DATABASE_URL, {
@@ -10,7 +10,7 @@ const connectDb = () => {
   });
 };
 
-const models = { User, Url };
+const models = { User, Photo };
 
 export { connectDb };
 
